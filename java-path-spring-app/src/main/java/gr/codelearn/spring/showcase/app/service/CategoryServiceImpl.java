@@ -18,6 +18,6 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category> implements Ca
 
 	@Override
 	public Category findByDescription(final String description) {
-		return null;
+		return categoryRepository.findByDescription(description);
 	}
 }

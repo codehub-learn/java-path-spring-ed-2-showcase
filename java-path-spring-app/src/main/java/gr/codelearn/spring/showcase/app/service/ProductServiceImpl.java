@@ -17,7 +17,7 @@ public class ProductServiceImpl extends BaseServiceImpl<Product> implements Prod
 	}
 
 	@Override
-	public Product findBySerial(final String serial) {
-		return null;
+	public Product findBySerial(String serial) {
+		return productRepository.findBySerial(serial);
 	}
 }
