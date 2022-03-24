@@ -1,55 +1,48 @@
 package gr.codelearn.spring.showcase.app.service;
 
+import gr.codelearn.spring.showcase.app.base.BaseComponent;
 import gr.codelearn.spring.showcase.app.domain.BaseModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 
-public abstract class BaseServiceImpl<T extends BaseModel> implements BaseService<T, Long> {
+public abstract class BaseServiceImpl<T extends BaseModel> extends BaseComponent implements BaseService<T, Long> {
 	public abstract JpaRepository<T, Long> getRepository();
 
-	@Override
-	public T create(final T item) {
+	public T create(T item) {
 		return getRepository().save(item);
 	}
 
-	@Override
-	public List<T> createAll(final List<T> items) {
+	public List<T> createAll(List<T> items) {
 		return getRepository().saveAll(items);
 	}
 
-	@Override
-	public List<T> createAll(final T... items) {
+	public List<T> createAll(T... items) {
 		return createAll(Arrays.asList(items));
 	}
 
-	@Override
-	public void update(final T item) {
+	public void update(T item) {
 		getRepository().save(item);
 	}
 
-	@Override
-	public void delete(final T item) {
+	public void delete(T item) {
 		getRepository().delete(item);
 	}
 
-	@Override
-	public void deleteById(final Long id) {
+	public void deleteById(Long id) {
 		getRepository().deleteById(id);
 	}
 
-	@Override
-	public T get(final Long id) {
-		return getRepository().getById(id);
+	public T get(Long id) {
+		return getRepository().findById(id).orElseThrow(NoSuchElementException::new);
 	}
 
-	@Override
-	public boolean exists(final T item) {
+	public boolean exists(T item) {
 		return getRepository().existsById(item.getId());
 	}
 
-	@Override
 	public List<T> findAll() {
 		return getRepository().findAll();
 	}
