@@ -1,5 +1,6 @@
 package gr.codelearn.spring.showcase.app.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import gr.codelearn.spring.showcase.app.transfer.KeyValue;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -34,7 +35,7 @@ import javax.validation.constraints.Pattern;
 		)
 )
 //@formatter:on
-
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Data
 @SuperBuilder
 @NoArgsConstructor
