@@ -11,6 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 //@formatter:off
 @NamedNativeQuery(name = "Customer.purchasedMostExpensiveProduct",
@@ -44,10 +45,11 @@ import javax.validation.constraints.NotNull;
 @SequenceGenerator(name = "idGenerator", sequenceName = "CUSTOMERS_SEQ", initialValue = 1, allocationSize = 1)
 public class Customer extends BaseModel {
 	@NotNull
+	@Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$", message = "{email.pattern}")
 	@Column(length = 50, nullable = false, unique = true)
 	private String email;
 
-	@NotNull
+	@NotNull(message = "{firstname.null}")
 	@Column(length = 20, nullable = false)
 	private String firstname;
 
