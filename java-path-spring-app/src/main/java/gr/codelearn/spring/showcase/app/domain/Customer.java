@@ -1,5 +1,6 @@
 package gr.codelearn.spring.showcase.app.domain;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import gr.codelearn.spring.showcase.app.transfer.KeyValue;
 import lombok.Data;
@@ -44,6 +45,7 @@ import javax.validation.constraints.Pattern;
 @Entity
 @Table(name = "CUSTOMERS", indexes = {@Index(columnList = "email")})
 @SequenceGenerator(name = "idGenerator", sequenceName = "CUSTOMERS_SEQ", initialValue = 1, allocationSize = 1)
+@JsonFilter("customerFilter")
 public class Customer extends BaseModel {
 	@NotNull
 	@Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$", message = "{email.pattern}")
