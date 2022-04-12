@@ -10,10 +10,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
 @RequiredArgsConstructor
-public class JokeServiceImpl extends BaseComponent {
+public class JokeServiceImpl extends BaseComponent implements JokeService {
 	private final RestTemplate restTemplate;
 	private final String URL_TEMPLATE = "https://v2.jokeapi.dev/joke/";
 
+	@Override
 	public String get(String[] categories, String... blacklistFlags) {
 		String url = prepareUrl(categories, blacklistFlags);
 		ResponseEntity<JsonNode> response = restTemplate.getForEntity(url, JsonNode.class);
