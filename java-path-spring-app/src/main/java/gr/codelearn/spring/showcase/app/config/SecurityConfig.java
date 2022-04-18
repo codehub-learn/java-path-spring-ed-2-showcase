@@ -22,7 +22,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @PropertySource("classpath:jwt.properties")
 @RequiredArgsConstructor
-
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private final JwtFilter jwtFilter;
 	private final UserDetailsService userDetailsService;
@@ -48,8 +47,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//@formatter:off
 		http.csrf().disable()
 				.authorizeRequests()
-				.antMatchers("/authenticate").permitAll()
-				.anyRequest().authenticated()
+//				.antMatchers("/authenticate").permitAll()
+//				.anyRequest().authenticated()
+				.anyRequest().permitAll()
 				.and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
