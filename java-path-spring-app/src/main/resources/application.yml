@@ -63,3 +63,8 @@ spring:
     web-application-type: servlet
   cache:
     cache-names: categories, category, products, product
+  task:
+    scheduling:
+      pool:
+        size: 2
+      thread-name-prefix: scheduler-
